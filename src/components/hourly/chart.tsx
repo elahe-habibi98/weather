@@ -12,12 +12,13 @@ import {
   PointElement,
   ScaleChartOptions,
   Title,
-  Tooltip
+  Tooltip,
 } from "chart.js";
 import { _DeepPartialObject } from "chart.js/dist/types/utils";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { FC } from "react";
+import { FC, useEffect, useState, useTransition } from "react";
 import { Line } from "react-chartjs-2";
+import useWindowDimensions from "../../core/utils/useWIndowDimension";
 
 ChartJS.register(
   CategoryScale,
@@ -35,6 +36,11 @@ interface ILineChartProp {
 }
 
 const LineChart: FC<ILineChartProp> = ({ data }): JSX.Element => {
+  const { width } = useWindowDimensions();
+  const [resp, setResp] = useState<boolean>(false);
+
+  const [isLoading, startTransition] = useTransition();
+
   const options: _DeepPartialObject<
     CoreChartOptions<"line"> &
       ElementChartOptions<"line"> &
@@ -75,7 +81,7 @@ const LineChart: FC<ILineChartProp> = ({ data }): JSX.Element => {
 
       y: {
         min: Math.min(...data.datasets[0].data) - 1,
-        max: Math.max(...data.datasets[0].data) + 2,
+        max: Math.max(...data.datasets[0].data) + 5,
         grid: {
           display: false,
           drawBorder: false,
@@ -91,8 +97,17 @@ const LineChart: FC<ILineChartProp> = ({ data }): JSX.Element => {
     },
   };
 
-  return <Line options={options} data={data} />;
+  useEffect(() => {
+    startTransition(() => {
+      setResp((old) => !old);
+    });
+  }, [width]);
+
+  return isLoading ? (
+    <span>Loading...</span>
+  ) : (
+    <Line width={width} options={options} data={data} />
+  );
 };
 
 export { LineChart };
-

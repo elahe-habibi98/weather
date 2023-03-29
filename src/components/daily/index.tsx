@@ -15,9 +15,9 @@ const Daily: FC<IDailyProp> = ({
 }): JSX.Element => {
   //************* Hooks *********************//
   return (
-    <div className=" h-2/5">
-      <div className=" text-white my-[1.5rem]">Daily</div>
-      <div className="border flex gap-x-3">
+    <div className="h-2/5">
+      <div className="text-white my-[1.5rem] font-bold">Daily</div>
+      <div className="flex gap-x-3">
         {days?.map((item: TDay, index: number) => (
           <Day
             key={index}

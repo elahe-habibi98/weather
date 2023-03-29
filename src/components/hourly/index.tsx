@@ -32,7 +32,7 @@ const Hourly: FC<IHourlyProp> = ({ day }): JSX.Element => {
 
   return (
     <div className=" text-white mt-[1rem]">
-      <div>Hourly</div>
+      <div className="font-bold" >Hourly</div>
       <div className="w-full max-h-[300px] py-[2rem] mt-[1rem] bg-opacity-10 bg-zinc-300">
         <LineChart data={data} />
       </div>
