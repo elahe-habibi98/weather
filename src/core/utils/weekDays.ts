@@ -2,11 +2,13 @@ const getDays = (day: string) => {
     
   const date = new Date(day);
 
-  const weeks = ["Sat", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  const weeks = [ "Sun", "Mon", "Tue", "Wed", "Thu", "Fri","Sat"];
+  console.log(date.getDay());
 
   return {
-    week:weeks[date.getDay() + 1],
+    week:weeks[date.getDay() ],
     day: date.getDate()
+
   };
 };
 

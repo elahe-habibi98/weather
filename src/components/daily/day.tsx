@@ -19,11 +19,11 @@ const Day: FC<IDayProp> = ({
   const date = getDays(item?.date || "");
 
   return (
-    <div onClick={() => handleSelect(itemIndex)}>
+    <div onClick={() => handleSelect(itemIndex)} className="cursor-pointer noselect" >
       <div
-        className={` text-white flex flex-col items-center justify-center 
+        className={` sm:w-[3rem] md:w-[4rem] lg:w-[6rem] xl:w-[8rem] 2xl:w-[11rem] py-[2rem] rounded-sm text-white flex flex-wrap flex-col items-center justify-center 
           ${isSelected ? "bg-opacity-30 bg-zinc-300" : ""} `}
-        style={{ width: "190px", height: "200px" }}
+        // style={{ width: "190px" }}
       >
         <div className=" w-9/12 flex flex-col gap-y-1">
           <div className="">

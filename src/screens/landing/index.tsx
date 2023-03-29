@@ -4,6 +4,7 @@ import { TDay } from "../../core/models/day.model";
 import { forecastAPI } from "../../core/services/api/forecast.api";
 import Daily from "./../../components/daily/index";
 import Hourly from "./../../components/hourly/index";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const LandingPage: FC = (): JSX.Element => {
   //************* Hooks *********************//
@@ -11,8 +12,12 @@ const LandingPage: FC = (): JSX.Element => {
   const [days, setDays] = useState<TDay[]>([]);
   const current = useMemo(
     () => days.find((row, ind) => ind === selected),
-    [days]
+    [days, selected]
   );
+
+  useEffect(()=>{
+    console.log("current : ", current)
+  },[current])
 
   //************* Load Data Of Forecast From API *********************//
   const loadData = async () => {
@@ -30,19 +35,38 @@ const LandingPage: FC = (): JSX.Element => {
   }, []);
 
   return (
-    <div
-      className="container mx-auto border bg-no-repeat bg-cover"
-      style={{
-        backgroundImage: `url(${img})`,
-        height: "100vh",
-        width: "100vw",
-      }}
-    >
-      <div className="w-11/12 mx-auto " style={{ height: "700px" }}>
-        <Daily days={days} selected={selected} handleSelect={handleSelect} />
-        <Hourly />
-      </div>
-    </div>
+    <>
+      {days.length !== 0 ? (
+        <div
+          className=" mx-auto border bg-no-repeat bg-cover"
+          style={{
+            backgroundImage: `url(${img})`,
+            backgroundSize : 'fill',
+            height: "100%",
+            width: "100vw",
+          }}
+        >
+          <div className="w-11/12 mx-auto ">
+            <Daily
+              days={days}
+              selected={selected}
+              handleSelect={handleSelect}
+            />
+            <Hourly day={current} />
+          </div>
+        </div>
+      ) : (
+        <div
+        className="flex justify-center items-center"
+          style={{
+            height: "100vh",
+            width: "100vw",
+          }}
+        >
+          <BeatLoader color="#36d7b7" />
+        </div>
+      )}
+    </>
   );
 };
 
