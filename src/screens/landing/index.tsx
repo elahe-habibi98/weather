@@ -1,10 +1,10 @@
-import { useEffect, useMemo, useState, FC } from "react";
+import { FC, useEffect, useMemo, useState } from "react";
+import BeatLoader from "react-spinners/BeatLoader";
 import img from "../../assets/img/background/sky.png";
 import { TDay } from "../../core/models/day.model";
 import { forecastAPI } from "../../core/services/api/forecast.api";
 import Daily from "./../../components/daily/index";
 import Hourly from "./../../components/hourly/index";
-import BeatLoader from "react-spinners/BeatLoader";
 
 const LandingPage: FC = (): JSX.Element => {
   //************* Hooks *********************//
@@ -14,10 +14,6 @@ const LandingPage: FC = (): JSX.Element => {
     () => days.find((row, ind) => ind === selected),
     [days, selected]
   );
-
-  useEffect(()=>{
-    console.log("current : ", current)
-  },[current])
 
   //************* Load Data Of Forecast From API *********************//
   const loadData = async () => {
@@ -41,7 +37,7 @@ const LandingPage: FC = (): JSX.Element => {
           className=" mx-auto border bg-no-repeat bg-cover"
           style={{
             backgroundImage: `url(${img})`,
-            backgroundSize : 'fill',
+            backgroundSize: "fill",
             height: "100%",
             width: "100vw",
           }}
@@ -57,7 +53,7 @@ const LandingPage: FC = (): JSX.Element => {
         </div>
       ) : (
         <div
-        className="flex justify-center items-center"
+          className="flex justify-center items-center"
           style={{
             height: "100vh",
             width: "100vw",

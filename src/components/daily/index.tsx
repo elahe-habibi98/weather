@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import { TDay } from "../../core/models/day.model";
 import Day from "./day";
 

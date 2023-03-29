@@ -1,24 +1,23 @@
-import React from "react";
-import { FC } from "react";
-import { _DeepPartialObject } from "chart.js/dist/types/utils";
 import {
-  Chart as ChartJS,
   CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  ScaleChartOptions,
-  DatasetChartOptions,
-  PluginChartOptions,
-  ElementChartOptions,
+  Chart as ChartJS,
   CoreChartOptions,
+  DatasetChartOptions,
+  ElementChartOptions,
+  Legend,
+  LinearScale,
   LineControllerChartOptions,
+  LineElement,
+  PluginChartOptions,
+  PointElement,
+  ScaleChartOptions,
+  Title,
+  Tooltip
 } from "chart.js";
-import { Line } from "react-chartjs-2";
+import { _DeepPartialObject } from "chart.js/dist/types/utils";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { FC } from "react";
+import { Line } from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -96,3 +95,4 @@ const LineChart: FC<ILineChartProp> = ({ data }): JSX.Element => {
 };
 
 export { LineChart };
+

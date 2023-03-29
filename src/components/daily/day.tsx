@@ -1,4 +1,4 @@
-import { useState, FC } from "react";
+import { FC } from "react";
 import { TDay } from "../../core/models/day.model";
 import { getDays } from "../../core/utils/weekDays";
 
@@ -19,11 +19,13 @@ const Day: FC<IDayProp> = ({
   const date = getDays(item?.date || "");
 
   return (
-    <div onClick={() => handleSelect(itemIndex)} className="cursor-pointer noselect" >
+    <div
+      onClick={() => handleSelect(itemIndex)}
+      className="cursor-pointer noselect"
+    >
       <div
-        className={` sm:w-[3rem] md:w-[4rem] lg:w-[6rem] xl:w-[8rem] 2xl:w-[11rem] py-[2rem] rounded-sm text-white flex flex-wrap flex-col items-center justify-center 
+        className={` sm:w-[8rem] md:w-[11rem] lg:w-[12rem]  py-[2rem] rounded-sm text-white flex flex-wrap flex-col items-center justify-center 
           ${isSelected ? "bg-opacity-30 bg-zinc-300" : ""} `}
-        // style={{ width: "190px" }}
       >
         <div className=" w-9/12 flex flex-col gap-y-1">
           <div className="">
